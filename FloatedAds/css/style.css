@@ -1,0 +1,6 @@
+#divAdLeft a[href="#"] {
+    pointer-events: none;
+}
+#divAdRight a[href="#"] {
+    pointer-events: none;
+}

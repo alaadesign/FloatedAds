@@ -21,7 +21,7 @@ function FloatTopDiv()
 		e2.y = startLY; 
 		return e2; 
 	} 
-	window.stayTopLeft=function() 
+	window.sticky_right_banner=function() 
 	{ 
 		if (document.documentElement && document.documentElement.scrollTop) 
 			var pY =  document.documentElement.scrollTop; 
@@ -30,20 +30,30 @@ function FloatTopDiv()
 		if (document.body.scrollTop > 30){startLY = 3;startRY = 3;} else {startLY = TopAdjust;startRY = TopAdjust;}; 
 		ftlObj.y += (pY+startRY-ftlObj.y)/16; 
 		ftlObj.sP(ftlObj.x, ftlObj.y); 
+		if (right_banner_sticky_js == 1){setTimeout("sticky_right_banner()", 1);}; 
+	}
+	window.sticky_left_banner=function() 
+	{ 
+		if (document.documentElement && document.documentElement.scrollTop) 
+			var pY =  document.documentElement.scrollTop; 
+		else if (document.body) 
+			var pY =  document.body.scrollTop; 
+		if (document.body.scrollTop > 30){startLY = 3;startRY = 3;} else {startLY = TopAdjust;startRY = TopAdjust;}; 
 		ftlObj2.y += (pY+startLY-ftlObj2.y)/16; 
 		ftlObj2.sP(ftlObj2.x, ftlObj2.y); 
-		setTimeout("stayTopLeft()", 1); 
-	} 
+		if (left_banner_sticky_js == 1){setTimeout("sticky_left_banner()", 1);}; 
+	}
+
 	if (right_banner_on == 1){ ftlObj = ml("divAdRight"); }
 	else {
 		ftlObj = ml("FloatedAds_none");
 	}; 
-	//stayTopLeft(); 
 	if (left_banner_on == 1){ ftlObj2 = m2("divAdLeft"); }
 	else {
 		ftlObj2 = m2("FloatedAds_none");
 	};
-	stayTopLeft(); 
+	sticky_left_banner();
+	sticky_right_banner();	
 } 
 function ShowAdDiv() 
 { 

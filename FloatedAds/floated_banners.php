@@ -49,17 +49,25 @@
 			$options_panel->addCheckbox('left_banner_sticky',array('name'=> __('Activate Sticky Option','apc'), 'std' => false, 'desc' => __('Activate this option to display the banner in a sticky style','apc')));
 			//image ad
 			$left_banner_image_cond[] = $options_panel->addImage('left_banner_image',array('name'=> __('Upload Banner Image','apc')),true);
+			//is_url
+			$left_banner_image_cond[] = $options_panel->addText('left_banner_image_link',
+			    array(
+			      'name'     => __('Enter your banner image link','apc'),
+			      'std'      => '#',
+			      'desc'     => __("Add your banner link, or keep it set to # in case you don't want to link your image anywhere!","apc"),
+			    ),true
+			);
 			//cusotm code ad
 			$left_banner_code_cond[] = $options_panel->addTextarea('left_banner_code',array('name'=> __('Add your banner code','apc'), 'std'=> __('You can use any banner code here including Google Adsense', 'apc')),true);
 			//conditinal block 
-			$options_panel->addCondition('conditinal_fields_1',
+			$options_panel->addCondition('left_banner_image_state',
 			      array(
 			        'name'   => __('Use image banner?','apc'),
 			        'fields' => $left_banner_image_cond,
 			        'std'    => false,
 			));
 			//conditinal block 
-			$options_panel->addCondition('conditinal_fields_2',
+			$options_panel->addCondition('left_banner_code_state',
 			      array(
 			        'name'   => __('Use custom code banner?','apc'),
 			        'fields' => $left_banner_code_cond,
@@ -145,17 +153,25 @@
 			$options_panel->addCheckbox('right_banner_sticky',array('name'=> __('Activate Sticky Option','apc'), 'std' => false, 'desc' => __('Activate this option to display the banner in a sticky style','apc')));
 			//image ad
 			$right_banner_image_cond[] = $options_panel->addImage('right_banner_image',array('name'=> __('Upload Banner Image','apc')),true);
+			//is_url
+			$right_banner_image_cond[] = $options_panel->addText('right_banner_image_link',
+			    array(
+			      'name'     => __('Enter your banner image link','apc'),
+			      'std'      => '#',
+			      'desc'     => __("Add your banner link, or keep it set to # in case you don't want to link your image anywhere!","apc"),
+			    ),true
+			);
 			//cusotm code ad
 			$right_banner_code_cond[] = $options_panel->addTextarea('right_banner_code',array('name'=> __('Add your banner code','apc'), 'std'=> __('You can use any banner code here including Google Adsense', 'apc')),true);
 			//conditinal block 
-			$options_panel->addCondition('conditinal_fields_3',
+			$options_panel->addCondition('right_banner_image_state',
 			      array(
 			        'name'   => __('Use image banner?','apc'),
 			        'fields' => $right_banner_image_cond,
 			        'std'    => false,
 			));
 			//conditinal block 
-			$options_panel->addCondition('conditinal_fields_4',
+			$options_panel->addCondition('right_banner_code_state',
 			      array(
 			        'name'   => __('Use custom code banner?','apc'),
 			        'fields' => $right_banner_code_cond,
@@ -177,6 +193,7 @@
 				add_action('wp_enqueue_scripts','FloatedAds_load_script');
 				function FloatedAds_load_script() {
 				    wp_enqueue_script( 'FloatedAds.js', plugins_url( '/js/FloatedAds.js', __FILE__ ));
+				    wp_enqueue_style( 'FloatedAds.css', plugins_url( '/css/style.css', __FILE__ ));
 				}
 				add_action('wp_footer', 'FloatedAds_load_ads');
 			}	
@@ -189,11 +206,31 @@
 				//load the saved data from the data base
 				$FloatedAds_data = get_option('flads_options');
 
-				$right_banner_url = $FloatedAds_data['conditinal_fields_3']['right_banner_image']['src'];
-				$left_banner_url = $FloatedAds_data['conditinal_fields_1']['left_banner_image']['src'];
+				if (isset($FloatedAds_data['right_banner_image_state']['enabled']) && $FloatedAds_data['right_banner_image_state']['right_banner_image']['src']!=="") { 
+					$right_banner_url = $FloatedAds_data['right_banner_image_state']['right_banner_image']['src'];
+					$right_banner_link = $FloatedAds_data['right_banner_image_state']['right_banner_image_link'];
+					list($right_banner_width, $right_banner_height, $right_banner_type, $right_banner_attr) = getimagesize($right_banner_url);
+					$right_banner_is_image = 1; $right_banner_is_code = 0; 
+				}
+				elseif (isset($FloatedAds_data['right_banner_code_state']['enabled'])) {
+					$right_banner_custom = $FloatedAds_data['right_banner_code_state']['right_banner_code'];
+					$right_banner_is_image = 0; $right_banner_is_code = 1;
+					$right_banner_width = $right_banner_height = 0;
+				}
+				else {$right_banner_width = $right_banner_height = 0;}
 
-				list($right_banner_width, $right_banner_height, $right_banner_type, $right_banner_attr) = getimagesize($right_banner_url);
-				list($left_banner_width, $left_banner_height, $left_banner_type, $left_banner_attr) = getimagesize($left_banner_url);
+				if (isset($FloatedAds_data['left_banner_image_state']['enabled']) && $FloatedAds_data['left_banner_image_state']['left_banner_image']['src']!=="") { 
+					$left_banner_url = $FloatedAds_data['left_banner_image_state']['left_banner_image']['src'];
+					$left_banner_link = $FloatedAds_data['left_banner_image_state']['left_banner_image_link'];
+					list($left_banner_width, $left_banner_height, $left_banner_type, $left_banner_attr) = getimagesize($left_banner_url);
+					$left_banner_is_image = 1; $left_banner_is_code = 0;
+				}
+				elseif (isset($FloatedAds_data['left_banner_code_state']['enabled'])) {
+					$left_banner_custom = $FloatedAds_data['left_banner_code_state']['left_banner_code'];
+					$left_banner_is_image = 0; $left_banner_is_code = 1;
+					$left_banner_width = $left_banner_height = 0;
+				}
+				else {$left_banner_width = $left_banner_height = 0;}
 
 				$screen_w	=	$FloatedAds_data['container_min_width'];
 				$MainContentW	=	$FloatedAds_data['main_content_width'];
@@ -210,24 +247,39 @@
 				$TopAdjust		=	$FloatedAds_data['FloatedAds_margin_top'];
 
 
-			if (isset($FloatedAds_data['left_banner_active']) && $FloatedAds_data['left_banner_active'] == "1"){ $left_banner_is_on = 1;} else { $left_banner_is_on = 0;};
-			if (isset($FloatedAds_data['right_banner_active']) && $FloatedAds_data['right_banner_active'] == "1"){ $right_banner_is_on = 1;}else { $right_banner_is_on = 0;};
+			if ($FloatedAds_data['left_banner_active'] == "1" && $FloatedAds_data['left_banner_image_state']['left_banner_image']['src']!=="" ){ $left_banner_is_on = 1;} elseif ($FloatedAds_data['left_banner_active'] == "1" && isset($FloatedAds_data['left_banner_code_state']['enabled'])) { $left_banner_is_on = 1; } else { $left_banner_is_on = 0;};
+
+			if ($FloatedAds_data['right_banner_active'] == "1" && $FloatedAds_data['right_banner_image_state']['right_banner_image']['src']!==""){ $right_banner_is_on = 1;} elseif ($FloatedAds_data['right_banner_active'] == "1" && isset($FloatedAds_data['right_banner_code_state']['enabled'])) { $right_banner_is_on = 1; } else { $left_banner_is_on = 0;};
+
+			if ($FloatedAds_data['left_banner_sticky'] == "1"){ $left_banner_is_sticky = 1;} else { $left_banner_is_sticky = 0;};
+			if ($FloatedAds_data['right_banner_sticky'] == "1"){ $right_banner_is_sticky = 1;}else { $right_banner_is_sticky = 0;};
 
 		    if(!wp_is_mobile())://desktop ?>
 				<script type="text/javascript">
 		            var clientWidth	=	window.screen.width;
 		            var left_banner_on = <?php echo $left_banner_is_on; ?>;
 		            var right_banner_on = <?php echo $right_banner_is_on; ?>;
+		            var left_banner_is_image_js = <?php echo $left_banner_is_image; ?>;
+   		            var left_banner_is_code_js = <?php echo $left_banner_is_code; ?>;
+		            var right_banner_is_image_js = <?php echo $right_banner_is_image; ?>;
+		            var right_banner_is_code_js = <?php echo $right_banner_is_code; ?>;
+
 		            if(clientWidth >= <?php echo $screen_w; ?>){
-		                if (right_banner_on == 1){
-		                	document.write('<div id="divAdRight" style="position: absolute; top: 0px; width:<?php echo $RightBannerW; ?>px; <?php if($RightBannerH) echo "height:".$RightBannerH."px;"; ?> overflow:hidden;"><img src="<?php echo $right_banner_url; ?>" /></div>');
+		                if (right_banner_on == 1 && right_banner_is_image_js == 1){
+		                	document.write('<div id="divAdRight" style="position: absolute; top: 0px; width:<?php echo $RightBannerW; ?>px; <?php if($RightBannerH) echo "height:".$RightBannerH."px;"; ?> overflow:hidden;"><a href="<?php if (isset($right_banner_link)){echo($right_banner_link);}; ?>"><img src="<?php if (isset($right_banner_url)){echo($right_banner_url);}; ?>" /></a></div>');
 		                }
+		                else if (right_banner_on == 1 && right_banner_is_code_js == 1){
+		                	document.write('<div id="divAdRight" style="position: absolute; top: 0px; width:<?php echo '160'; ?>px; <?php if($RightBannerH) echo "height:".$RightBannerH."px;"; ?> overflow:hidden;"><?php if (isset($right_banner_custom)){echo htmlspecialchars_decode($right_banner_custom);}; ?></div><div id="FloatedAds_none"></div>');
+		                }		            
 		                else {
 		                	document.write('<div id="FloatedAds_none"></div>');
 		                }
-		                if (left_banner_on == 1){
-		                	document.write('<div id="divAdLeft" style="position: absolute; top: 0px; width:<?php echo $LeftBannerW; ?>px; <?php if($LeftBannerH) echo "height:".$LeftBannerH."px;"; ?> overflow:hidden;"><img src="<?php echo $left_banner_url; ?>" /></div>');
+		                if (left_banner_on == 1 && left_banner_is_image_js == 1){
+		                	document.write('<div id="divAdLeft" style="position: absolute; top: 0px; width:<?php echo $LeftBannerW; ?>px; <?php if($LeftBannerH) echo "height:".$LeftBannerH."px;"; ?> overflow:hidden;"><a href="<?php if (isset($left_banner_link)){echo($left_banner_link);}; ?>"><img src="<?php if (isset($left_banner_url)){echo($left_banner_url);}; ?>" /></a></div>');
 		                }
+		                else if (left_banner_on == 1 && left_banner_is_code_js == 1){
+		                	document.write('<div id="divAdLeft" style="position: absolute; top: 0px; width:<?php echo '160'; ?>px; <?php if($LeftBannerH) echo "height:".$LeftBannerH."px;"; ?> overflow:hidden;"><?php if (isset($left_banner_custom)){echo htmlspecialchars_decode($left_banner_custom);}; ?></div><div id="FloatedAds_none"></div>');
+		                }		                
 		                else {
 		                	document.write('<div id="FloatedAds_none"></div>');
 		                }
@@ -236,7 +288,9 @@
 		                var RightBannerW = <?php echo $RightBannerW; ?>;
 		                var LeftAdjust = <?php echo $LeftAdjust; ?>;
 		                var RightAdjust = <?php echo $RightAdjust; ?>;
-		                var TopAdjust = <?php echo $TopAdjust; ?>;		                
+		                var TopAdjust = <?php echo $TopAdjust; ?>;	
+		                var left_banner_sticky_js = <?php echo $left_banner_is_sticky; ?>;
+		            	var right_banner_sticky_js = <?php echo $right_banner_is_sticky; ?>;	                
 		                ShowAdDiv();
 		                window.onresize=ShowAdDiv; 
 		            }
@@ -273,7 +327,8 @@
 		        <?php endif; ?>
 		    <?php endif;//End check mobile?>
 		    
-		<?php	
+		<?php
+		print_r($FloatedAds_data);
 		}
 /*** End of Front End Implemntation ***/
 ?>
