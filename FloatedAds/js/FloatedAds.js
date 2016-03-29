@@ -57,15 +57,16 @@ function FloatTopDiv()
 } 
 function ShowAdDiv() 
 { 
-	if (right_banner_on == 1){ var objAdDivRight = document.getElementById("divAdRight"); }
+	if (right_banner_on == 1){
+		var objAdDivRight = document.getElementById("divAdRight");
+		objAdDivRight.style.display = "block";  
+	}
+	if (left_banner_on == 1){
+		var objAdDivLeft = document.getElementById("divAdLeft"); 
+		objAdDivLeft.style.display = "block";
+	} 
 	else {
 		var objAdDivRight = document.getElementById("FloatedAds_none");
-	};
-	if (left_banner_on == 1){ var objAdDivLeft = document.getElementById("divAdLeft"); } 
-		else {
-		var objAdDivRight = document.getElementById("FloatedAds_none");
-	};     
-	if (right_banner_on == 1){ objAdDivRight.style.display = "block"; };
-	if (left_banner_on == 1){ objAdDivLeft.style.display = "block"; };
+	}     
 	FloatTopDiv(); 
 }
