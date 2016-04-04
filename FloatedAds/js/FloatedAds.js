@@ -60,24 +60,113 @@ function FloatBannerRight()
 function ShowAdDiv() 
 { 
 	if (right_banner_on == 1){
-		if (right_banner_is_image_js == 1 || right_banner_is_code_js == 1){
-			var objAdDivRight = document.getElementById("divAdRight");
-			objAdDivRight.style.display = "block";
-			FloatBannerRight();
+		if (right_banner_is_image_js == 1){
+				jQuery(function(){
+				    jQuery.ajax({
+				      type: "POST",
+				      url: right_url,
+				      data: ({
+				      	clientwidth_php:clientWidth,
+				      	screen_w:screen_min_width,
+				      	right_banner_is_on:right_banner_on,
+				      	right_banner_is_image:right_banner_is_image_js,
+				      	RightBannerW:RightBannerW,
+				      	RightBannerH:RightBannerH,
+				      	right_banner_link:right_banner_link,
+				      	right_banner_url:right_banner_url
+				      }),
+				      success: function(data) {
+				        jQuery("body").append(data);
+				      }
+				    });
+				});
+			jQuery(document).ajaxStop(function() {
+				var objAdDivRight = document.getElementById("divAdRight");
+				objAdDivRight.style.display = "block";
+				FloatBannerRight();
+			});
 		}
-		else {var objAdDivRight = document.getElementById("FloatedAds_none");}
+		if (right_banner_is_code_js == 1){
+				jQuery(function(){
+				    jQuery.ajax({
+				      type: "POST",
+				      url: right_url,
+				      data: ({
+				      	clientwidth_php:clientWidth,
+				      	screen_w:screen_min_width,
+				      	right_banner_is_on:right_banner_on,
+				      	right_banner_custom:right_banner_custom,
+				      	RightBannerW:RightBannerW,
+				      	RightBannerH:RightBannerH,
+				      	right_banner_is_code:right_banner_is_code_js
+				      }),
+				      success: function(data) {
+				        jQuery("body").append(data);
+				      }
+				    });
+				});
+			jQuery(document).ajaxStop(function() {
+				var objAdDivRight = document.getElementById("divAdRight");
+				objAdDivRight.style.display = "block";
+				FloatBannerRight();
+			});
+		}
+
 		 
 	}
 	if (left_banner_on == 1){
-		if (left_banner_is_image_js == 1 || left_banner_is_code_js == 1){
-			var objAdDivLeft = document.getElementById("divAdLeft");
-			objAdDivLeft.style.display = "block";
-			FloatBannerLeft();
+		if (left_banner_is_image_js == 1){
+				jQuery(function(){
+				    jQuery.ajax({
+				      type: "POST",
+				      url: left_url,
+				      data: ({
+				      	clientwidth_php:clientWidth,
+				      	screen_w:screen_min_width,
+				      	left_banner_is_on:left_banner_on,
+				      	left_banner_is_image:left_banner_is_image_js,
+				      	LeftBannerW:LeftBannerW,
+				      	LeftBannerH:LeftBannerH,
+				      	left_banner_link:left_banner_link,
+				      	left_banner_url:left_banner_url
+				      }),
+				      success: function(data) {
+				        jQuery("body").append(data);
+				      }
+				    });
+				});
+			jQuery(document).ajaxStop(function() {
+				var objAdDivLeft = document.getElementById("divAdLeft");
+				objAdDivLeft.style.display = "block";
+				FloatBannerLeft();
+			});
 		}
-		else {var objAdDivLeft = document.getElementById("FloatedAds_none");}
+		if (left_banner_is_code_js == 1){
+				jQuery(function(){
+				    jQuery.ajax({
+				      type: "POST",
+				      url: left_url,
+				      data: ({
+				      	clientwidth_php:clientWidth,
+				      	screen_w:screen_min_width,
+				      	left_banner_is_on:left_banner_on,
+				      	left_banner_custom:left_banner_custom,
+				      	LeftBannerW:LeftBannerW,
+				      	LeftBannerH:LeftBannerH,
+				      	left_banner_is_code:left_banner_is_code_js
+				      }),
+				      success: function(data) {
+				        jQuery("body").append(data);
+				      }
+				    });
+				});
+			jQuery(document).ajaxStop(function() {
+				var objAdDivLeft = document.getElementById("divAdLeft");
+				objAdDivLeft.style.display = "block";
+				FloatBannerLeft();
+			});
+		}
+
 	} 
-	else {
-		var objAdDivRight = document.getElementById("FloatedAds_none");
-		var objAdDivLeft = document.getElementById("FloatedAds_none");
-	}    	 
+  	 
 }
