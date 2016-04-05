@@ -640,3 +640,26 @@ function get_query_var( name ) {
 function bindOn(event,selector,func){
   $(document).on(event,selector,func);
 }
+
+/**
+ * Hiding conditional tags
+ */
+jQuery(document).ready(function() {
+
+      jQuery('div[rel="left_banner_image_state"]').on('click',function(){
+      jQuery('div[rel="left_banner_code_state"]').removeClass('on');
+      jQuery('div[rel="left_banner_code_state"]').addClass('off');
+      jQuery('div[rel="left_banner_code_state"]').next().hide();
+      jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state");
+      jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state[enabled]");
+    });
+
+      jQuery('div[rel="left_banner_code_state"]').on('click',function(){
+      jQuery('div[rel="left_banner_image_state"]').removeClass('on');
+      jQuery('div[rel="left_banner_image_state"]').addClass('off');
+      jQuery('div[rel="left_banner_image_state"]').next().hide();
+      jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state");
+      jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state[enabled]");
+    });
+
+});

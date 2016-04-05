@@ -159,7 +159,7 @@
 			    )
 			);
 			//checkbox field
-			$options_panel->addCheckbox('show_on_mobile',array('name'=> __('Show Banners On Mobile Devices','apc'), 'std' => true, 'desc' => __('Activate this option to display the banners on mobile devices','apc')));
+			$options_panel->addCheckbox('show_on_homepage',array('name'=> __('Show Banners Homeapge ONLY','apc'), 'std' => true, 'desc' => __('Activate this option to show the banners on homepage only','apc')));
 			//checkbox field
 			$options_panel->addCheckbox('show_on_archive',array('name'=> __('Show Banners On Archives Pages','apc'), 'std' => false, 'desc' => __('Activate this option to display the banners in archives pages (caetgories, tags, etc...)','apc')));
 
@@ -244,9 +244,10 @@
 				    wp_enqueue_script( 'FloatedAds.js', plugins_url( '/js/FloatedAds.js', __FILE__ ));
 				    wp_enqueue_style( 'FloatedAds.css', plugins_url( '/css/style.css', __FILE__ ));
 				}
-				add_action('wp_footer', 'FloatedAds_load_ads');
+				add_action('wp_footer', 'FloatedAds_load_ads');			
 			}	
 		}
+
 	//call the main fucntion
 		add_action('init', 'FloatedAds_main');
 
@@ -387,6 +388,21 @@
 	                window.onresize=ShowAdDiv;
 	        </script>
 	    <?php
+	    //print_r($FloatedAds_data);				
 	}
 /*** End of Front End Implemntation ***/
+
+/*** Show Ads on Homepage only function ***/
+	$FloatedAds_data = get_option('flads_options');
+
+	if (isset($FloatedAds_data['show_on_homepage']) && $FloatedAds_data['show_on_homepage'] == "1"){
+		function show_on_homepage_only () {
+			if (!is_home() && !is_front_page()) {
+				global $post;					
+				remove_action('wp_enqueue_scripts', 'FloatedAds_load_script');
+ 				remove_action('wp_footer', 'FloatedAds_load_ads');
+		    }
+		}
+		add_action( 'get_header', 'show_on_homepage_only' );
+	}
 ?>
