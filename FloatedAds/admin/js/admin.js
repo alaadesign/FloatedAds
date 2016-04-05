@@ -650,6 +650,7 @@ jQuery(document).ready(function() {
       jQuery('div[rel="left_banner_code_state"]').removeClass('on');
       jQuery('div[rel="left_banner_code_state"]').addClass('off');
       jQuery('div[rel="left_banner_image_state"]').addClass('on');
+      jQuery('div[rel="left_banner_image_state"]').next().show();
       jQuery('div[rel="left_banner_code_state"]').next().hide();
       jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state");
       jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state[enabled]");
@@ -659,6 +660,7 @@ jQuery(document).ready(function() {
       jQuery('div[rel="left_banner_image_state"]').removeClass('on');
       jQuery('div[rel="left_banner_image_state"]').addClass('off');
       jQuery('div[rel="left_banner_code_state"]').addClass('on');
+      jQuery('div[rel="left_banner_code_state"]').next().show();
       jQuery('div[rel="left_banner_image_state"]').next().hide();
       jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state");
       jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state[enabled]");
