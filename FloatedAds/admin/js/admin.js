@@ -669,6 +669,26 @@ function bindOn(event,selector,func){
 // });
 
 jQuery(document).ready(function() {
+  jQuery('div[rel="left_banner_image_state"]').on('click',function(){
+      if (jQuery(this).hasClass("on")) {
+          turn_image_button_off();
+      }
+      else if (jQuery(this).hasClass("off")) {
+          turn_image_button_on();
+          turn_code_button_off();
+      }
+  });
+  jQuery('div[rel="left_banner_code_state"]').on('click',function(){
+      if (jQuery(this).hasClass("on")) {
+          console.log("it was on");
+          turn_code_button_off();          
+      }
+      else if (jQuery(this).hasClass("off")) {
+          turn_code_button_on();
+          turn_image_button_off();
+      }
+  });
+});
   function turn_image_button_off() {
     jQuery('div[rel="left_banner_image_state"]').removeClass('on');
     jQuery('div[rel="left_banner_image_state"]').addClass('off');
@@ -693,25 +713,3 @@ jQuery(document).ready(function() {
     jQuery('div[rel="left_banner_code_state"]').next().show();
     jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state[enabled]");
   }
-
-  jQuery('div[rel="left_banner_image_state"]').on('click',function(){
-      if (jQuery('div[rel="left_banner_image_state"]').hasClass("on")) {
-          turn_image_button_off();
-      }
-      else {
-          turn_image_button_on();
-          turn_code_button_off();
-      }
-  });
-
-  jQuery('div[rel="left_banner_code_state"]').on('click',function(){
-      if (jQuery('div[rel="left_banner_code_state"]').hasClass("on")) {
-          turn_code_button_off();
-      }
-      else {
-          turn_code_button_on();
-          turn_image_button_off();
-      }
-  });
-  
-});
