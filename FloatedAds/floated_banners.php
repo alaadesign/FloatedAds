@@ -32,72 +32,12 @@
 	//define your admin page tabs listing
 		$options_panel->TabsListing(array(
 		    'links' => array(
-		    	'left_banner' =>  __('Left Banner','apc'),
 		    	'general' =>  __('General','apc'),
+		    	'left_banner' =>  __('Left Banner','apc'),		    	
 		    	'right_banner' =>  __('Right Content','apc'),
+		    	'mobile_banner' =>  __('Mobile Banner','apc'),
 		    )
 		));
-
-	//left banner
-		$options_panel->OpenTab('left_banner');
-			
-			$options_panel->Title(__("Left Banner Options","apc"));
-
-			//checkbox field
-			$options_panel->addCheckbox('left_banner_active',array('name'=> __('Activate Left Banner Area','apc'), 'std' => true, 'desc' => __('Activate this option to display the left banner area','apc')));
-			//checkbox field
-			$options_panel->addCheckbox('left_banner_sticky',array('name'=> __('Activate Sticky Option','apc'), 'std' => false, 'desc' => __('Activate this option to display the banner in a sticky style','apc')));
-			//image ad
-			$left_banner_image_cond[] = $options_panel->addImage('left_banner_image',array('name'=> __('Upload Banner Image','apc')),true);
-			//is_url
-			$left_banner_image_cond[] = $options_panel->addText('left_banner_image_link',
-			    array(
-			      'name'     => __('Enter your banner image link','apc'),
-			      'std'      => '#',
-			      'desc'     => __("Add your banner link, or keep it set to # in case you don't want to link your image anywhere!","apc"),
-			    ),true
-			);
-			//cusotm code ad
-			$left_banner_code_cond[] = $options_panel->addTextarea('left_banner_code',array('name'=> __('Add your banner code','apc'), 'std'=> __('You can use any banner code here including Google Adsense', 'apc')),true);
-			//is_numeric
-			$left_banner_code_cond[] = $options_panel->addText('left_banner_code_width',
-			    array(
-			      'name'     => __('Your custom banner width','apc'),
-			      'std'      => 160,
-			      'desc'     => __("Enter numeric value of the banner width","apc"),
-			      'validate' => array(
-			          'numeric' => array('param' => '','message' => __("must be numeric value","apc"))
-			      )
-			    )
-			    ,true
-			);
-			//is_numeric
-			$left_banner_code_cond[] = $options_panel->addText('left_banner_code_height',
-			    array(
-			      'name'     => __('Your custom banner height','apc'),
-			      'std'      => 600,
-			      'desc'     => __("Enter numeric value of the banner height","apc"),
-			      'validate' => array(
-			          'numeric' => array('param' => '','message' => __("must be numeric value","apc"))
-			      )
-			    )
-			    ,true
-			);
-			//conditinal block 
-			$options_panel->addCondition('left_banner_image_state',
-			      array(
-			        'name'   => __('Use image banner?','apc'),
-			        'fields' => $left_banner_image_cond,
-			        'std'    => false,
-			));
-			//conditinal block 
-			$options_panel->addCondition('left_banner_code_state',
-			      array(
-			        'name'   => __('Use custom code banner?','apc'),
-			        'fields' => $left_banner_code_cond,
-			        'std'    => false,
-			));
-		$options_panel->CloseTab();
 
 	//main content
 		$options_panel->OpenTab('general');
@@ -160,9 +100,68 @@
 			);
 			//checkbox field
 			$options_panel->addCheckbox('show_on_homepage',array('name'=> __('Show Banners Homeapge ONLY','apc'), 'std' => true, 'desc' => __('Activate this option to show the banners on homepage only','apc')));
-			//checkbox field
-			$options_panel->addCheckbox('show_on_archive',array('name'=> __('Show Banners On Archives Pages','apc'), 'std' => false, 'desc' => __('Activate this option to display the banners in archives pages (caetgories, tags, etc...)','apc')));
 
+		$options_panel->CloseTab();
+
+	//left banner
+		$options_panel->OpenTab('left_banner');
+			
+			$options_panel->Title(__("Left Banner Options","apc"));
+
+			//checkbox field
+			$options_panel->addCheckbox('left_banner_active',array('name'=> __('Activate Left Banner Area','apc'), 'std' => true, 'desc' => __('Activate this option to display the left banner area','apc')));
+			//checkbox field
+			$options_panel->addCheckbox('left_banner_sticky',array('name'=> __('Activate Sticky Option','apc'), 'std' => false, 'desc' => __('Activate this option to display the banner in a sticky style','apc')));
+			//image ad
+			$left_banner_image_cond[] = $options_panel->addImage('left_banner_image',array('name'=> __('Upload Banner Image','apc')),true);
+			//is_url
+			$left_banner_image_cond[] = $options_panel->addText('left_banner_image_link',
+			    array(
+			      'name'     => __('Enter your banner image link','apc'),
+			      'std'      => '#',
+			      'desc'     => __("Add your banner link, or keep it set to # in case you don't want to link your image anywhere!","apc"),
+			    ),true
+			);
+			//cusotm code ad
+			$left_banner_code_cond[] = $options_panel->addTextarea('left_banner_code',array('name'=> __('Add your banner code','apc'), 'std'=> __('You can use any banner code here including Google Adsense', 'apc')),true);
+			//is_numeric
+			$left_banner_code_cond[] = $options_panel->addText('left_banner_code_width',
+			    array(
+			      'name'     => __('Your custom banner width','apc'),
+			      'std'      => 160,
+			      'desc'     => __("Enter numeric value of the banner width","apc"),
+			      'validate' => array(
+			          'numeric' => array('param' => '','message' => __("must be numeric value","apc"))
+			      )
+			    )
+			    ,true
+			);
+			//is_numeric
+			$left_banner_code_cond[] = $options_panel->addText('left_banner_code_height',
+			    array(
+			      'name'     => __('Your custom banner height','apc'),
+			      'std'      => 600,
+			      'desc'     => __("Enter numeric value of the banner height","apc"),
+			      'validate' => array(
+			          'numeric' => array('param' => '','message' => __("must be numeric value","apc"))
+			      )
+			    )
+			    ,true
+			);
+			//conditinal block 
+			$options_panel->addCondition('left_banner_image_state',
+			      array(
+			        'name'   => __('Use image banner?','apc'),
+			        'fields' => $left_banner_image_cond,
+			        'std'    => false,
+			));
+			//conditinal block 
+			$options_panel->addCondition('left_banner_code_state',
+			      array(
+			        'name'   => __('Use custom code banner?','apc'),
+			        'fields' => $left_banner_code_cond,
+			        'std'    => false,
+			));
 		$options_panel->CloseTab();
 
 	//right banner
@@ -225,6 +224,65 @@
 			        'fields' => $right_banner_code_cond,
 			        'std'    => false,
 			));
+		$options_panel->CloseTab();
+
+	//Mobile Banner
+		$options_panel->OpenTab('mobile_banner');
+			
+			$options_panel->Title(__("Mobile Banner","apc"));
+			//checkbox field
+			$options_panel->addCheckbox('show_mobile_banner',array('name'=> __('Show Footer Banner on mobile devices','apc'), 'std' => false, 'desc' => __('Activate this option show footer banner on mobile devices and tablets','apc')));
+			//image ad
+			$mobile_banner_image_cond[] = $options_panel->addImage('mobile_banner_image',array('name'=> __('Upload Banner Image','apc')),true);
+			//is_url
+			$mobile_banner_image_cond[] = $options_panel->addText('mobile_banner_image_link',
+			    array(
+			      'name'     => __('Enter your banner image link','apc'),
+			      'std'      => '#',
+			      'desc'     => __("Add your banner link, or keep it set to # in case you don't want to link your image anywhere!","apc"),
+			    ),true
+			);
+			//cusotm code ad
+			$mobile_banner_code_cond[] = $options_panel->addTextarea('mobile_banner_code',array('name'=> __('Add your banner code','apc'), 'std'=> __('You can use any banner code here including Google Adsense', 'apc')),true);
+			//is_numeric
+			$mobile_banner_code_cond[] = $options_panel->addText('mobile_banner_code_width',
+			    array(
+			      'name'     => __('Your custom banner width','apc'),
+			      'std'      => 160,
+			      'desc'     => __("Enter numeric value of the banner width","apc"),
+			      'validate' => array(
+			          'numeric' => array('param' => '','message' => __("must be numeric value","apc"))
+			      )
+			    )
+			    ,true
+			);
+			//is_numeric
+			$mobile_banner_code_cond[] = $options_panel->addText('mobile_banner_code_height',
+			    array(
+			      'name'     => __('Your custom banner height','apc'),
+			      'std'      => 600,
+			      'desc'     => __("Enter numeric value of the banner height","apc"),
+			      'validate' => array(
+			          'numeric' => array('param' => '','message' => __("must be numeric value","apc"))
+			      )
+			    )
+			    ,true
+			);
+			//conditinal block 
+			$options_panel->addCondition('mobile_banner_image_state',
+			      array(
+			        'name'   => __('Use image banner?','apc'),
+			        'fields' => $mobile_banner_image_cond,
+			        'std'    => false,
+			));
+			//conditinal block 
+			$options_panel->addCondition('mobile_banner_code_state',
+			      array(
+			        'name'   => __('Use custom code banner?','apc'),
+			        'fields' => $mobile_banner_code_cond,
+			        'std'    => false,
+			));
+
 		$options_panel->CloseTab();
 
 /*** End of Admin Panel section ***/
@@ -361,6 +419,58 @@
 						</script>
 						<?php
 				}
+				if ($FloatedAds_data['show_mobile_banner'] == "1"){
+
+					if (isset($FloatedAds_data['mobile_banner_image_state']['enabled']) && $FloatedAds_data['mobile_banner_image_state']['mobile_banner_image']['src']!==""){
+							$mobile_banner_url = $FloatedAds_data['mobile_banner_image_state']['mobile_banner_image']['src'];
+							$mobile_banner_link = $FloatedAds_data['mobile_banner_image_state']['mobile_banner_image_link'];
+							list($mobile_banner_width, $mobile_banner_height, $mobile_banner_type, $mobile_banner_attr) = getimagesize($mobile_banner_url);
+							$mobile_banner_is_on = 1; $mobile_banner_is_image = 1; $mobile_banner_is_code = 0;	
+							?>
+							<script>
+								var mobile_banner_is_on = <?php echo $mobile_banner_is_on; ?>;
+								var mobile_banner_url = <?php echo json_encode($mobile_banner_url); ?>;
+	               				var mobile_banner_link = <?php echo json_encode($mobile_banner_link); ?>;
+	               				var MobileBannerW = <?php echo $mobile_banner_width; ?>;
+	                			var MobileBannerH = <?php echo $mobile_banner_height; ?>;
+	                			var mobile_banner_is_image = <?php echo $mobile_banner_is_image; ?>;
+	            				var mobile_banner_is_code = <?php echo $mobile_banner_is_code; ?>;
+							</script>
+							<?php
+					}
+					elseif (isset($FloatedAds_data['mobile_banner_code_state']['enabled'])) {
+						$mobile_banner_custom = $FloatedAds_data['mobile_banner_code_state']['mobile_banner_code'];
+						$mobile_banner_is_on = 1; $mobile_banner_is_code = 1; $mobile_banner_is_image = 0; 
+						$mobile_banner_width = $mobile_banner_height = 0;
+						?>
+						<script>
+								var mobile_banner_is_on = <?php echo $mobile_banner_is_on; ?>;
+	                			var mobile_banner_custom = <?php echo json_encode($mobile_banner_custom); ?>;
+								var MobileBannerW = <?php echo $FloatedAds_data['mobile_banner_code_state']['mobile_banner_code_width']; ?>;
+	                			var MobileBannerH = <?php echo $FloatedAds_data['mobile_banner_code_state']['mobile_banner_code_height']; ?>;
+	                			var mobile_banner_is_image = <?php echo $mobile_banner_is_image; ?>;
+	            				var mobile_banner_is_code = <?php echo $mobile_banner_is_code; ?>;	
+						</script>
+						<?php
+					}
+					else {
+						$mobile_banner_is_on = $mobile_banner_width = $mobile_banner_height = $mobile_banner_is_image = $mobile_banner_is_code = 0;
+						?>
+						<script>
+								var mobile_banner_is_on = <?php echo $mobile_banner_is_on; ?>;
+	                			var mobile_banner_is_image = <?php echo $mobile_banner_is_image; ?>;
+	            				var mobile_banner_is_code = <?php echo $mobile_banner_is_code; ?>;	
+						</script>
+						<?php
+					}
+
+				}
+				if (wp_is_mobile()){
+					$device_is_mobile = 1;
+				}
+				if (!wp_is_mobile()){
+					$device_is_mobile = 0;
+				}
 				
 				$screen_w	=	$FloatedAds_data['container_min_width'];
 				$MainContentW	=	$FloatedAds_data['main_content_width'];
@@ -375,7 +485,8 @@
 
 			?><script type="text/javascript">
 					var left_url = <?php echo json_encode(plugins_url('/includes/left_banner.php', __FILE__ )); ?>;
-					var right_url = <?php echo json_encode(plugins_url('/includes/right_banner.php', __FILE__ )); ?>;					
+					var right_url = <?php echo json_encode(plugins_url('/includes/right_banner.php', __FILE__ )); ?>;
+					var mobile_url = <?php echo json_encode(plugins_url('/includes/mobile_banner.php', __FILE__ )); ?>;					
 					var clientWidth	=	window.screen.width;
 					var screen_min_width	=	<?php echo $screen_w; ?>;		            
 	    			var MainContentW = <?php echo $MainContentW; ?>;	                
@@ -384,8 +495,9 @@
 	                var TopAdjust = <?php echo $TopAdjust; ?>;
 	                var left_banner_sticky_js = <?php echo $left_banner_is_sticky; ?>;
 	            	var right_banner_sticky_js = <?php echo $right_banner_is_sticky; ?>;
+	            	var device_is_mobile = <?php echo $device_is_mobile; ?>;
 	                ShowAdDiv();
-	                window.onresize=ShowAdDiv;
+	                //window.onresize=ShowAdDiv;
 	        </script>
 	    <?php
 	    //print_r($FloatedAds_data);				
