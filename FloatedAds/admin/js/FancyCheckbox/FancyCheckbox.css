@@ -36,7 +36,18 @@
 .iphone-style:hover:after{
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
-
+.green:after {
+    margin-left: 16px!important;
+}
+.green:before {
+    background: #55D069!important;
+}
+.grey:after {
+    margin-left: 0!important;
+}
+.grey:before {
+    background: #fff!important;
+}
 .on:after {
     margin-left: 16px;
 }

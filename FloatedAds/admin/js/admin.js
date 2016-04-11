@@ -644,72 +644,161 @@ function bindOn(event,selector,func){
 /**
  * Hiding conditional tags
  */
-// jQuery(document).ready(function() {
-
-//       jQuery('div[rel="left_banner_image_state"]').on('click',function(){
-//       jQuery('div[rel="left_banner_code_state"]').removeClass('on');
-//       jQuery('div[rel="left_banner_code_state"]').addClass('off');
-//       jQuery('div[rel="left_banner_image_state"]').addClass('on');
-//       jQuery('div[rel="left_banner_image_state"]').next().show();
-//       jQuery('div[rel="left_banner_code_state"]').next().hide();
-//       jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state");
-//       jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state[enabled]");
-//     });
-
-//       jQuery('div[rel="left_banner_code_state"]').on('click',function(){
-//       jQuery('div[rel="left_banner_image_state"]').removeClass('on');
-//       jQuery('div[rel="left_banner_image_state"]').addClass('off');
-//       jQuery('div[rel="left_banner_code_state"]').addClass('on');
-//       jQuery('div[rel="left_banner_code_state"]').next().show();
-//       jQuery('div[rel="left_banner_image_state"]').next().hide();
-//       jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state");
-//       jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state[enabled]");
-//     });
-
-// });
-
 jQuery(document).ready(function() {
+
+  //left banner
+  if (jQuery('div[rel="left_banner_image_state"]').hasClass("on")) {
+      jQuery('div[rel="left_banner_image_state"]').addClass('green');
+  }
+  else if (jQuery('div[rel="left_banner_image_state"]').hasClass("off")) {
+      jQuery('div[rel="left_banner_image_state"]').addClass('grey');
+  }
+  if (jQuery('div[rel="left_banner_code_state"]').hasClass("on")) {
+      jQuery('div[rel="left_banner_code_state"]').addClass('green');
+  }
+  else if (jQuery('div[rel="left_banner_code_state"]').hasClass("off")) {
+      jQuery('div[rel="left_banner_code_state"]').addClass('grey');
+  }
+  //right banner
+  if (jQuery('div[rel="right_banner_image_state"]').hasClass("on")) {
+      jQuery('div[rel="right_banner_image_state"]').addClass('green');
+  }
+  else if (jQuery('div[rel="right_banner_image_state"]').hasClass("off")) {
+      jQuery('div[rel="right_banner_image_state"]').addClass('grey');
+  }
+  if (jQuery('div[rel="right_banner_code_state"]').hasClass("on")) {
+      jQuery('div[rel="right_banner_code_state"]').addClass('green');
+  }
+  else if (jQuery('div[rel="right_banner_code_state"]').hasClass("off")) {
+      jQuery('div[rel="right_banner_code_state"]').addClass('grey');
+  }
+  //mobile banner
+  if (jQuery('div[rel="mobile_banner_image_state"]').hasClass("on")) {
+      jQuery('div[rel="mobile_banner_image_state"]').addClass('green');
+  }
+  else if (jQuery('div[rel="mobile_banner_image_state"]').hasClass("off")) {
+      jQuery('div[rel="mobile_banner_image_state"]').addClass('grey');
+  }
+  if (jQuery('div[rel="mobile_banner_code_state"]').hasClass("on")) {
+      jQuery('div[rel="mobile_banner_code_state"]').addClass('green');
+  }
+  else if (jQuery('div[rel="mobile_banner_code_state"]').hasClass("off")) {
+      jQuery('div[rel="mobile_banner_code_state"]').addClass('grey');
+  }
   jQuery('div[rel="left_banner_image_state"]').on('click',function(){
-      if (jQuery(this).hasClass("on")) {
-          turn_image_button_off();
+      if (jQuery(this).hasClass("green")) {        
+          jQuery(this).removeClass('green');
+          jQuery(this).addClass('grey');
+          jQuery(this).next().hide();
+          jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state");
       }
-      else if (jQuery(this).hasClass("off")) {
-          turn_image_button_on();
-          turn_code_button_off();
+      else if (jQuery(this).hasClass("grey")) {
+          jQuery(this).removeClass('grey');
+          jQuery(this).addClass('green');
+          jQuery(this).next().show();
+          jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state[enabled]");
+
+          jQuery('div[rel="left_banner_code_state"]').removeClass('green');
+          jQuery('div[rel="left_banner_code_state"]').addClass('grey');
+          jQuery('div[rel="left_banner_code_state"]').next().hide();
+          jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state");
       }
   });
   jQuery('div[rel="left_banner_code_state"]').on('click',function(){
-      if (jQuery(this).hasClass("on")) {
-          console.log("it was on");
-          turn_code_button_off();          
+      if (jQuery(this).hasClass("green")) {
+          jQuery(this).removeClass('green');
+          jQuery(this).addClass('grey');
+          jQuery(this).next().hide();
+          jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state");          
       }
-      else if (jQuery(this).hasClass("off")) {
-          turn_code_button_on();
-          turn_image_button_off();
+      else if (jQuery(this).hasClass("grey")) {
+          jQuery(this).removeClass('grey');
+          jQuery(this).addClass('green');
+          jQuery(this).next().show();
+          jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state[enabled]");
+          
+          jQuery('div[rel="left_banner_image_state"]').removeClass('green');
+          jQuery('div[rel="left_banner_image_state"]').addClass('grey');
+          jQuery('div[rel="left_banner_image_state"]').next().hide();
+          jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state");
+      }
+  });
+//right banner
+  jQuery('div[rel="right_banner_image_state"]').on('click',function(){
+      if (jQuery(this).hasClass("green")) {        
+          jQuery(this).removeClass('green');
+          jQuery(this).addClass('grey');
+          jQuery(this).next().hide();
+          jQuery('input[id="right_banner_image_state"]').attr("name", "right_banner_image_state");
+      }
+      else if (jQuery(this).hasClass("grey")) {
+          jQuery(this).removeClass('grey');
+          jQuery(this).addClass('green');
+          jQuery(this).next().show();
+          jQuery('input[id="right_banner_image_state"]').attr("name", "right_banner_image_state[enabled]");
+
+          jQuery('div[rel="right_banner_code_state"]').removeClass('green');
+          jQuery('div[rel="right_banner_code_state"]').addClass('grey');
+          jQuery('div[rel="right_banner_code_state"]').next().hide();
+          jQuery('input[id="right_banner_code_state"]').attr("name", "right_banner_code_state");
+      }
+  });
+  jQuery('div[rel="right_banner_code_state"]').on('click',function(){
+      if (jQuery(this).hasClass("green")) {
+          jQuery(this).removeClass('green');
+          jQuery(this).addClass('grey');
+          jQuery(this).next().hide();
+          jQuery('input[id="right_banner_code_state"]').attr("name", "right_banner_code_state");          
+      }
+      else if (jQuery(this).hasClass("grey")) {
+          jQuery(this).removeClass('grey');
+          jQuery(this).addClass('green');
+          jQuery(this).next().show();
+          jQuery('input[id="right_banner_code_state"]').attr("name", "right_banner_code_state[enabled]");
+          
+          jQuery('div[rel="right_banner_image_state"]').removeClass('green');
+          jQuery('div[rel="right_banner_image_state"]').addClass('grey');
+          jQuery('div[rel="right_banner_image_state"]').next().hide();
+          jQuery('input[id="right_banner_image_state"]').attr("name", "right_banner_image_state");
+      }
+  });
+//mobile banner
+  jQuery('div[rel="mobile_banner_image_state"]').on('click',function(){
+      if (jQuery(this).hasClass("green")) {        
+          jQuery(this).removeClass('green');
+          jQuery(this).addClass('grey');
+          jQuery(this).next().hide();
+          jQuery('input[id="mobile_banner_image_state"]').attr("name", "mobile_banner_image_state");
+      }
+      else if (jQuery(this).hasClass("grey")) {
+          jQuery(this).removeClass('grey');
+          jQuery(this).addClass('green');
+          jQuery(this).next().show();
+          jQuery('input[id="mobile_banner_image_state"]').attr("name", "mobile_banner_image_state[enabled]");
+
+          jQuery('div[rel="mobile_banner_code_state"]').removeClass('green');
+          jQuery('div[rel="mobile_banner_code_state"]').addClass('grey');
+          jQuery('div[rel="mobile_banner_code_state"]').next().hide();
+          jQuery('input[id="mobile_banner_code_state"]').attr("name", "mobile_banner_code_state");
+      }
+  });
+  jQuery('div[rel="mobile_banner_code_state"]').on('click',function(){
+      if (jQuery(this).hasClass("green")) {
+          jQuery(this).removeClass('green');
+          jQuery(this).addClass('grey');
+          jQuery(this).next().hide();
+          jQuery('input[id="mobile_banner_code_state"]').attr("name", "mobile_banner_code_state");          
+      }
+      else if (jQuery(this).hasClass("grey")) {
+          jQuery(this).removeClass('grey');
+          jQuery(this).addClass('green');
+          jQuery(this).next().show();
+          jQuery('input[id="mobile_banner_code_state"]').attr("name", "mobile_banner_code_state[enabled]");
+          
+          jQuery('div[rel="mobile_banner_image_state"]').removeClass('green');
+          jQuery('div[rel="mobile_banner_image_state"]').addClass('grey');
+          jQuery('div[rel="mobile_banner_image_state"]').next().hide();
+          jQuery('input[id="mobile_banner_image_state"]').attr("name", "mobile_banner_image_state");
       }
   });
 });
-  function turn_image_button_off() {
-    jQuery('div[rel="left_banner_image_state"]').removeClass('on');
-    jQuery('div[rel="left_banner_image_state"]').addClass('off');
-    jQuery('div[rel="left_banner_image_state"]').next().hide();
-    jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state");
-  }
-  function turn_image_button_on() {
-    jQuery('div[rel="left_banner_image_state"]').removeClass('off');
-    jQuery('div[rel="left_banner_image_state"]').addClass('on');
-    jQuery('div[rel="left_banner_image_state"]').next().show();
-    jQuery('input[id="left_banner_image_state"]').attr("name", "left_banner_image_state[enabled]");
-  }
-  function turn_code_button_off() {
-    jQuery('div[rel="left_banner_code_state"]').removeClass('on');
-    jQuery('div[rel="left_banner_code_state"]').addClass('off');
-    jQuery('div[rel="left_banner_code_state"]').next().hide();
-    jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state");
-  }
-  function turn_code_button_on() {
-    jQuery('div[rel="left_banner_code_state"]').removeClass('off');
-    jQuery('div[rel="left_banner_code_state"]').addClass('on');
-    jQuery('div[rel="left_banner_code_state"]').next().show();
-    jQuery('input[id="left_banner_code_state"]').attr("name", "left_banner_code_state[enabled]");
-  }
