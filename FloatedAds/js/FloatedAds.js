@@ -1,10 +1,24 @@
+function AdsWindowResize()
+{
+	if (left_banner_on == 1 && device_is_mobile == 0)
+		FloatBannerLeft();
+	if (right_banner_on == 1 && device_is_mobile == 0)
+		FloatBannerRight();
+}
+
 function FloatBannerLeft() 
 { 
 	startLX = ((document.body.clientWidth -MainContentW)/2) - (LeftBannerW+LeftAdjust) , startLY = TopAdjust; 
-	var d = document; 
-	function m2(id) 
+	
+	var e2=document.getElementById("divAdLeft");
+	if(e2 != null){
+		e2.style.left=startLX + 'px';
+		e2.style.top=startLY + 'px'; 
+	}
+	
+	/*function m2(id) 
 	{ 
-		var e2=d.getElementById?d.getElementById(id):d.all?d.all[id]:d.layers[id]; 
+		var e2=document.getElementById?document.getElementById(id):document.all?document.all[id]:document.layers[id]; 
 		e2.sP=function(x,y){this.style.left=x + 'px';this.style.top=y + 'px';}; 
 		e2.x = startLX;
 		e2.y = startLY;
@@ -25,13 +39,20 @@ function FloatBannerLeft()
 	else {
 		ftlObj2 = m2("FloatedAds_none");
 	};
-	sticky_left_banner();
+	sticky_left_banner();*/
 }
 
 function FloatBannerRight() 
 { 
 	startRX = ((document.body.clientWidth -MainContentW)/2) + (MainContentW+RightAdjust) , startRY = TopAdjust; 
-	var d = document; 
+	
+	var e2=document.getElementById("divAdRight");
+	if(e2 != null){
+		e2.style.left=startRX + 'px';
+		e2.style.top=startRY + 'px'; 
+	}
+	
+	/*var d = document; 
 	function ml(id) 
 	{ 
 		var el=d.getElementById?d.getElementById(id):d.all?d.all[id]:d.layers[id]; 
@@ -55,7 +76,7 @@ function FloatBannerRight()
 	else {
 		ftlObj = ml("FloatedAds_none");
 	}; 
-	sticky_right_banner();	
+	sticky_right_banner();	*/
 } 
 function ShowAdDiv() 
 { 

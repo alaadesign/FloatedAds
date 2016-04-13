@@ -497,7 +497,8 @@
 	            	var right_banner_sticky_js = <?php echo $right_banner_is_sticky; ?>;
 	            	var device_is_mobile = <?php echo $device_is_mobile; ?>;
 	                ShowAdDiv();
-	                //window.onresize=ShowAdDiv;
+	                //window.onresize=AdsWindowResize();
+	                window.addEventListener('resize', AdsWindowResize, true);
 	        </script>
 	    <?php
 	    //print_r($FloatedAds_data);				
