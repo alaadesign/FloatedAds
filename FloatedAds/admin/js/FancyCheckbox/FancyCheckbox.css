@@ -19,7 +19,6 @@
     transition: all 0.3s;
 }
 .iphone-style:after{
-
     content: "";
     position: absolute;
     display: block;
@@ -40,7 +39,7 @@
     margin-left: 16px!important;
 }
 .green:before {
-    background: #55D069!important;
+    background: #37839A!important;
 }
 .grey:after {
     margin-left: 0!important;
@@ -52,7 +51,7 @@
     margin-left: 16px;
 }
 .on:before {
-    background: #55D069;
+    background: #37839A;
 }
 .firerift-style {		
 	display: block;

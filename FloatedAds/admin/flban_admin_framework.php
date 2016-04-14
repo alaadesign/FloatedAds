@@ -280,7 +280,7 @@ if ( ! class_exists( 'BF_Admin_Page_Class') ) :
       
 
       // Assign page values to local variables and add it's missed values.
-      //by_FloatedAds change the folder name toadmin instead of admin-class-page
+      //by_FloatedAds change the folder name to admin instead of admin-class-page
       $this->_Page_Config = $args;
       $this->_fields = $this->_Page_Config['fields'];
       $this->_Local_images = (isset($args['local_images'])) ? true : false;

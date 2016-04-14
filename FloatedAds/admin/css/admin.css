@@ -6,6 +6,71 @@
  * Copyright 2011 Ohad Raz (admin@bainternet.info)
  */
 
+/*Added by FloatedAds*/
+.header_wrap h2 {
+    font-size: 2.5em;
+    color: #37839A;
+}
+input.btn-info.btn {
+    font-size: 16px;
+    padding: 10px;
+    background-color: #37839A !important;
+}
+input.btn-info.btn:hover{
+    background-color: #4AADCC!important;
+}
+.sections {
+    padding: 0 20px 0 20px;
+    width: 600px!important;
+}
+.nav_tab_link {
+    color: #37839A!important;
+    font-size: 16px!important;
+    line-height: 20px!important;
+}
+.setingstab h2 {
+    font-size: 20px;
+    margin-bottom: 0;
+    color: #37839A;
+}
+.form-table .field {
+    padding-left: 20px;
+    border-bottom: 1px solid #37839A;
+    float: left;
+    width: 90%;
+}
+.sections input[type="text"], .sections input[type="password"], .sections input[type="file"], .sections select {
+    max-width: 200px;
+}
+.at-label {
+    color: #37839A;
+    text-shadow: none!important;
+    font: 20px/31px "Open Sans",sans-serif;
+}
+.sections label {
+    font-size: 16px!important;
+    font-weight: 400!important;
+}
+.desc-field {
+    float: right;
+    display: inline-block;
+    max-width: 50%;
+    padding: 10px;
+}
+.form-table .field:last-child {
+    border-bottom: 0;
+}
+.sections #left_banner_image_state[left_banner_image_link] {
+    max-width: 200px!important;
+}
+.mupload_img_holder img {
+    width: inherit!important;
+    height: inherit!important;
+}
+input.at-delete_image_button.button {
+    margin-left: 20px;
+}
+
 /* =Common Rules for all fields.
 ----------------------------------------------- */
 .form-table td.at-field{ border: 1px solid #DDD; padding: 10px 10px 20px; margin: 0px; font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue", Helvetica, Arial, sans-serif; }

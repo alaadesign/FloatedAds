@@ -251,7 +251,7 @@ function fancyCheckbox(){
  * Select 2 enable function
  * @since 1.1.5
  */
- //by_FloatedAds to fix, whatif there weren't any select box bug!
+ //by_FloatedAds to fix "what if there weren't any select box" bug!
 if ($("select").length){
   fancySelect();
   function fancySelect(){
