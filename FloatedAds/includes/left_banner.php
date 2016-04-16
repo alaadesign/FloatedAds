@@ -60,24 +60,9 @@
 	if($left_banner_sticky_php == 1){
 	?>
 		<script>
-			jQuery(function sticky_left_banner() {
-				var $get_left_banner = jQuery("#divAdLeft"), 
-				$window    = jQuery(window),
-				offset     = $get_left_banner.offset(),
-				topPadding = 15;
-				/*calculate the top margin while scrolling*/
-				$window.scroll(function() {
-					if ($window.scrollTop() > offset.top) {
-						$get_left_banner.stop().animate({
-						marginTop: $window.scrollTop() - offset.top + topPadding
-						});
-					} else {
-						$get_left_banner.stop().animate({
-						marginTop: 0
-						});
-					}
-				});
-			});
+		jQuery(document).ready(function() {
+      jQuery("#divAdLeft").addClass("fixed_float");
+		});
 		</script>
 	<?php
 	}

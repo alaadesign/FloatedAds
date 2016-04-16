@@ -11,8 +11,7 @@
 /* Admin Panel Section */
 
 	//include the main class file
-	require_once("admin/flban_admin_framework.php");
- 
+	require_once("admin/flban_admin_framework.php");	
 	//configure your admin page
 	$config = array(    
 		'menu'=> array('top' => 'floated-ads'),             //register the menu item settings
@@ -44,11 +43,13 @@
 	//title
 	$options_panel->Title(__("General Settings","apc"));
 	//theme content width
+	//getting the homepage url link
+	$home_url_link = get_home_url();	
 	$options_panel->addText('main_content_width',
 		array(
 			'name'     => __('Enter the width of your main website container','apc'),
 			'std'      => 1220,
-			'desc'     => __("Your banners will be positioned on the sides of this container width, use <a href='https://www.piliapp.com/measure-webpage/'>this tool</a> to help you measuring your website container width.","apc"),
+			'desc'     => __("Your banners will be positioned on the sides of this container width, use <a href='https://www.piliapp.com/measure-webpage/?src=".$home_url_link."' class='measure_url'>this tool</a> to help you measuring your website container width.","apc"),
 			'validate' => array(
 				'numeric' => array(
 					'param' => '',
@@ -631,7 +632,7 @@
 	$FloatedAds_data = get_option('flads_options');
 	//check if the homepage only option is checked
 	if (isset($FloatedAds_data['show_on_homepage']) && $FloatedAds_data['show_on_homepage'] == "1"){
-		function show_on_homepage_only () {
+		function show_on_homepage_only () {			
 			if (!is_home() && !is_front_page()) {
 				global $post;
 				remove_action('wp_enqueue_scripts', 'FloatedAds_load_script');

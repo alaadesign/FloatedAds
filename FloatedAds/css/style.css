@@ -5,6 +5,9 @@
     #divAdRight a[href="#"] {
         pointer-events: none;
     }
+    .fixed_float {
+        position: fixed!important;
+    }
 /*mobile banner styles*/
     #bottom_banner {
         position: fixed;

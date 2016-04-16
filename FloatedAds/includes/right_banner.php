@@ -59,25 +59,10 @@
 	//check if the left banner is set to sticky
 	if($right_banner_sticky_php == 1){
 	?>
-		<script>
-			jQuery(function sticky_right_banner() {
-				var $get_right_banner   = jQuery("#divAdRight"), 
-				$window    = jQuery(window),
-				offset     = $get_right_banner.offset(),
-				topPadding = 15;
-				/*calculate the top margin while scrolling*/
-				$window.scroll(function() {
-					if ($window.scrollTop() > offset.top) {
-						$get_right_banner.stop().animate({
-						marginTop: $window.scrollTop() - offset.top + topPadding
-						});
-					} else {
-						$get_right_banner.stop().animate({
-						marginTop: 0
-						});
-					}
-				});
-			});
+		<script>		
+		jQuery(document).ready(function() {
+      jQuery("#divAdRight").addClass("fixed_float");
+		});
 		</script>
 	<?php
 	}

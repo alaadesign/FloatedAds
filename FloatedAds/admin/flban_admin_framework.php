@@ -975,10 +975,12 @@ if ( ! class_exists( 'BF_Admin_Page_Class') ) :
 
     // Enqueue admin page Style, by_FloatedAds change the admin js/css files names
     wp_enqueue_style( 'Admin_Page_Class', $plugin_path . '/css/admin.css' );
+    wp_enqueue_style( 'color_box_plugin', $plugin_path . '/css/colorbox.css' );
     wp_enqueue_style('iphone_checkbox',$plugin_path. '/js/FancyCheckbox/FancyCheckbox.css');
     
     // Enqueue admin page Scripts
     wp_enqueue_script( 'Admin_Page_Class', $plugin_path . '/js/admin.js', array( 'jquery' ), null, true );
+    wp_enqueue_script( 'color_box_plugin', $plugin_path . '/js/jquery.colorbox-min.js', array( 'jquery' ), null, true );
     wp_enqueue_script('iphone_checkbox',$plugin_path. '/js/FancyCheckbox/FancyCheckbox.js',array('jquery'),null,true);
     
     wp_enqueue_script('utils');

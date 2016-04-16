@@ -642,6 +642,13 @@ function bindOn(event,selector,func){
 }
 
 /**
+ * Loading the measure tool in colorbox
+ */
+jQuery(document).ready(function(){
+  jQuery(".measure_url").colorbox({iframe:true, width:"95%", height:"95%"});
+});
+
+/**
  * Hiding conditional tags
  */
 jQuery(document).ready(function() {
