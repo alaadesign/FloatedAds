@@ -31,7 +31,7 @@
 
   //check if this device is mobile and the mobile banner is set to image
   if ($mobile_banner_is_on == 1 && $mobile_banner_is_image == 1){
-    echo "<div id=\"bottom_banner\"><span class=\"close-btn\"></span><a href=",isset($mobile_banner_link) ? $mobile_banner_link : '',"><img src=",isset($mobile_banner_url) ? $mobile_banner_url : ''," /></a></div>";
+    echo "<div id=\"bottom_banner\"><span class=\"close-btn\"></span><a href=\"",isset($mobile_banner_link) ? $mobile_banner_link : '',"\"><img src=\"",isset($mobile_banner_url) ? $mobile_banner_url : '',"\" /></a></div>";
     $margin_left = $MobileBannerW+20;
     $margin_top = $MobileBannerH*(-1);
     ?>

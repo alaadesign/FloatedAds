@@ -44,7 +44,7 @@
 	if($clientwidth_php >= $screen_w){
 		//check if the right banner is on and set to image
 		if ($right_banner_is_on == 1 && $right_banner_is_image == 1){
-			echo "<div id=\"divAdRight\" style=\"position: absolute; top: 0px; width:",$RightBannerW,"px;height:",$RightBannerH,"px;overflow:hidden;\"><a href=",isset($right_banner_link) ? $right_banner_link : '',"><img src=",isset($right_banner_url) ? $right_banner_url : ''," /></a></div>";
+			echo "<div id=\"divAdRight\" style=\"position: absolute; top: 0px; width:",$RightBannerW,"px;height:",$RightBannerH,"px;overflow:hidden;\"><a href=\"",isset($right_banner_link) ? $right_banner_link : '',"\"><img src=\"",isset($right_banner_url) ? $right_banner_url : '',"\" /></a></div>";
 		}
 		//check if the right banner is on and set to code
 		elseif ($right_banner_is_on == 1 && $right_banner_is_code == 1){
