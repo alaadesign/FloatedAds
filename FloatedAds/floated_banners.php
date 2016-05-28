@@ -1,11 +1,11 @@
 <?php 
 	/*
 		Plugin Name: FloatedAds
-		Plugin URI: http://www.intelaka.com/
+		Plugin URI: http://lab.alaadesign.com/project/floated-ads/
 		Description: Plugin for displaying floated banners ads on both sides of your website.
 		Author: Alaa Salama
 		Version: 1.0
-		Author URI: http://www.alaadesign.com
+		Author URI: http://lab.alaadesign.com
 	*/
 
 /* Admin Panel Section */
