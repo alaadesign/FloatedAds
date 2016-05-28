@@ -1,4 +1,4 @@
-<strong>FloatedAds</strong> - is a WordPress plugin allowing users to add two floated banners around their website main container, on the right and left side, giving the ability to hide these banners on mobile devices and show another floated banner flying from the bottom of the screen, including also many other features.
+<strong><a href="http://lab.alaadesign.com/project/floated-ads/">FloatedAds</strong></a> - is a WordPress plugin allowing users to add two floated banners around their website main container, on the right and left side, giving the ability to hide these banners on mobile devices and show another floated banner flying from the bottom of the screen, including also many other features.
 <h2>Features</h2>
 <ul>
  	<li>Manually assign your website main container width (included a tool to help you measuring it).</li>
