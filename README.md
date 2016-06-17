@@ -15,4 +15,4 @@
 <h2>Demo</h2>
 You can check this plugin in action on this <a href="http://floated-ads.alaadesign.com/">demo website</a>.
 <h2>Documentation</h2>
-A simple documentation of the plugin with an easy "How to use" guide, can be founded <a href="http://lab.alaadesign.com/floated-ads-docs/">here</a>.
+A simple documentation of the plugin with an easy "How to use" guide, can be found <a href="http://lab.alaadesign.com/floated-ads-docs/">here</a>.
